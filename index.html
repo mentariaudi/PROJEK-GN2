@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KSO Gas Jatinegara — Pitch Investor</title>
+<title>KSO Gas Jatinegara — Investor Pitch</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
+    --navy: #0A1F5C;
+    --navy-mid: #122877;
+    --navy-light: #1A3494;
+    --navy-accent: #2D4FBF;
     --amber: #BA7517;
     --amber-mid: #EF9F27;
     --amber-light: #FAEEDA;
@@ -29,9 +33,46 @@
     color: var(--gray-dark);
     line-height: 1.6;
   }
+
+  /* ── Language Toggle ── */
+  .lang-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 16px 0;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .lang-toggle {
+    display: flex;
+    background: var(--white);
+    border: 1px solid var(--gray-line);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+  .lang-btn {
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border: none;
+    background: transparent;
+    color: var(--gray-mid);
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+  }
+  .lang-btn.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .lang-btn:hover:not(.active) {
+    background: var(--gray-light);
+    color: var(--gray-dark);
+  }
+
   .page {
     max-width: 860px;
-    margin: 32px auto;
+    margin: 12px auto 32px;
     background: var(--white);
     border: 0.5px solid var(--gray-line);
     border-radius: 12px;
@@ -41,35 +82,48 @@
 
   /* Header */
   .header-band {
-    background: var(--gray-dark);
-    padding: 28px 36px 20px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-accent) 100%);
+    padding: 28px 36px 24px;
     position: relative;
+    overflow: hidden;
+  }
+  /* Subtle geometric watermark */
+  .header-band::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
   }
   .header-band::after {
     content: '';
     display: block;
-    height: 4px;
-    background: var(--amber-mid);
+    height: 3px;
+    background: linear-gradient(90deg, var(--amber-mid) 0%, #F7C55A 50%, var(--amber-mid) 100%);
     position: absolute;
     bottom: 0; left: 0; right: 0;
   }
   .eyebrow {
     font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 6px;
+    color: var(--amber-mid);
+    margin-bottom: 8px;
   }
   .header-title {
     font-size: 28px;
     font-weight: 700;
     color: var(--white);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
   }
   .header-sub {
     font-size: 13px;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.01em;
   }
   .badges {
     display: flex;
@@ -242,8 +296,8 @@
     border-radius: 10px;
     overflow: hidden;
   }
-  .cta-left  { background: var(--amber-light);  padding: 20px 22px; }
-  .cta-right { background: var(--teal-light); padding: 20px 22px; }
+  .cta-left  { background: var(--amber-light); padding: 20px 22px; }
+  .cta-right { background: var(--teal-light);  padding: 20px 22px; }
   .cta-left strong, .cta-right strong {
     display: block;
     font-size: 13px;
@@ -256,17 +310,29 @@
 
   /* Footer */
   .footer {
-    background: var(--gray-dark);
-    padding: 14px 36px;
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 16px 36px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
+    border-top: 2px solid var(--amber-mid);
   }
-  .footer span { font-size: 11px; color: rgba(255,255,255,0.4); }
+  .footer .footer-brand {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.04em;
+  }
+  .footer .footer-meta {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.02em;
+  }
 
   @media print {
+    .lang-bar { display: none; }
     body { background: white; }
     .page { box-shadow: none; margin: 0; border-radius: 0; border: none; }
     input[type=range] { display: none; }
@@ -281,81 +347,104 @@
 </head>
 <body>
 
+<!-- Language Toggle -->
+<div class="lang-bar">
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+    <button class="lang-btn"        id="btnID" onclick="setLang('id')">ID</button>
+  </div>
+</div>
+
 <div class="page">
 
   <!-- HEADER -->
   <div class="header-band">
     <div class="eyebrow">Garuda Nusantara II</div>
     <div class="header-title">KSO Gas Jatinegara</div>
-    <div class="header-sub">Kerja Sama Operasi dengan Pertamina EP &nbsp;·&nbsp; Jakarta, Indonesia</div>
+    <div class="header-sub" data-en="Joint Operating Agreement with Pertamina EP &nbsp;·&nbsp; Jakarta, Indonesia"
+                            data-id="Kerja Sama Operasi dengan Pertamina EP &nbsp;·&nbsp; Jakarta, Indonesia">
+      Joint Operating Agreement with Pertamina EP &nbsp;·&nbsp; Jakarta, Indonesia
+    </div>
     <div class="badges">
-      <span class="badge badge-amber">Komoditas Gas</span>
-      <span class="badge badge-teal">Status Legal Bersih</span>
-      <span class="badge badge-blue">Struktur KSO</span>
+      <span class="badge badge-amber" data-en="Gas Commodity"      data-id="Komoditas Gas">Gas Commodity</span>
+      <span class="badge badge-teal"  data-en="Clean Legal Status" data-id="Status Legal Bersih">Clean Legal Status</span>
+      <span class="badge badge-blue"  data-en="KSO Structure"      data-id="Struktur KSO">KSO Structure</span>
     </div>
   </div>
 
   <div class="body">
 
     <!-- METRICS -->
-    <div class="section-label">Angka Kunci</div>
-    <div class="section-title">Lima metrik utama</div>
+    <div class="section-label" data-en="Key Figures" data-id="Angka Kunci">Key Figures</div>
+    <div class="section-title" data-en="Five primary metrics" data-id="Lima metrik utama">Five primary metrics</div>
     <div class="metric-grid">
       <div class="metric-card">
-        <div class="metric-label">Investasi Tahun 1</div>
-        <div class="metric-value">$15 Jt</div>
-        <div class="metric-sub">Modal awal operasional</div>
+        <div class="metric-label" data-en="Year 1 Investment"       data-id="Investasi Tahun 1">Year 1 Investment</div>
+        <div class="metric-value">$15M</div>
+        <div class="metric-sub"   data-en="Initial operating capital" data-id="Modal awal operasional">Initial operating capital</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Total Capex s/d 2035</div>
-        <div class="metric-value">$71–74 Jt</div>
-        <div class="metric-sub">Sesuai POD yang ada</div>
+        <div class="metric-label" data-en="Total Capex to 2035"      data-id="Total Capex s/d 2035">Total Capex to 2035</div>
+        <div class="metric-value">$71–74M</div>
+        <div class="metric-sub"   data-en="Per existing POD"          data-id="Sesuai POD yang ada">Per existing POD</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Bagian Investor Bersih</div>
+        <div class="metric-label" data-en="Net Investor Share"        data-id="Bagian Investor Bersih">Net Investor Share</div>
         <div class="metric-value">~34%</div>
-        <div class="metric-sub">Dari total produksi gross</div>
+        <div class="metric-sub"   data-en="Of total gross production"  data-id="Dari total produksi gross">Of total gross production</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Bank Garansi</div>
-        <div class="metric-value">$1,5 Jt</div>
-        <div class="metric-sub">10% dari nilai POD Th. 1</div>
+        <div class="metric-label" data-en="Bank Guarantee"            data-id="Bank Garansi">Bank Guarantee</div>
+        <div class="metric-value">$1.5M</div>
+        <div class="metric-sub"   data-en="10% of Year 1 POD value"   data-id="10% dari nilai POD Th. 1">10% of Year 1 POD value</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Harga Gas /MMBTU</div>
+        <div class="metric-label" data-en="Gas Price /MMBTU"          data-id="Harga Gas /MMBTU">Gas Price /MMBTU</div>
         <div class="metric-value">$6–13</div>
-        <div class="metric-sub">Kisaran harga pasar</div>
+        <div class="metric-sub"   data-en="Market price range"         data-id="Kisaran harga pasar">Market price range</div>
       </div>
     </div>
 
     <hr class="divider">
 
     <!-- WHY THIS ASSET -->
-    <div class="section-label">Mengapa Aset Ini</div>
-    <div class="section-title">Aset strategis dengan status hukum yang bersih</div>
+    <div class="section-label" data-en="Why This Asset"   data-id="Mengapa Aset Ini">Why This Asset</div>
+    <div class="section-title" data-en="Strategic asset with clean legal standing" data-id="Aset strategis dengan status hukum yang bersih">Strategic asset with clean legal standing</div>
     <div class="highlight-grid">
       <div class="highlight-box">
-        <strong>Lokasi Jantung Jakarta</strong>
-        <p>Terletak strategis di pusat kota Jakarta, dekat dengan pasar gas perkotaan berkapasitas tinggi dan infrastruktur distribusi yang sudah ada.</p>
+        <strong data-en="Central Jakarta Location" data-id="Lokasi Jantung Jakarta">Central Jakarta Location</strong>
+        <p data-en="Strategically located in central Jakarta, close to high-capacity urban gas markets and existing distribution infrastructure."
+           data-id="Terletak strategis di pusat kota Jakarta, dekat dengan pasar gas perkotaan berkapasitas tinggi dan infrastruktur distribusi yang sudah ada.">
+          Strategically located in central Jakarta, close to high-capacity urban gas markets and existing distribution infrastructure.
+        </p>
       </div>
       <div class="highlight-box">
-        <strong>Status Hukum Bersih</strong>
-        <p>Foster Oil keluar melalui proses WLF KSO yang sah. Aset bebas sengketa dan siap diambil alih oleh mitra KSO baru tanpa risiko hukum.</p>
+        <strong data-en="Clean Legal Status" data-id="Status Hukum Bersih">Clean Legal Status</strong>
+        <p data-en="Foster Oil exited through a legitimate WLF KSO process. The asset is dispute-free and ready for a new KSO partner to assume without legal risk."
+           data-id="Foster Oil keluar melalui proses WLF KSO yang sah. Aset bebas sengketa dan siap diambil alih oleh mitra KSO baru tanpa risiko hukum.">
+          Foster Oil exited through a legitimate WLF KSO process. The asset is dispute-free and ready for a new KSO partner to assume without legal risk.
+        </p>
       </div>
       <div class="highlight-box">
-        <strong>Keunggulan POD Lama</strong>
-        <p>Memodifikasi POD milik Foster Oil menghemat waktu persiapan <strong>3–8 bulan</strong> dibanding memulai perencanaan dari awal.</p>
+        <strong data-en="Existing POD Advantage" data-id="Keunggulan POD Lama">Existing POD Advantage</strong>
+        <p data-en="Modifying Foster Oil's existing POD saves <strong>3–8 months</strong> of preparation time compared to planning from scratch."
+           data-id="Memodifikasi POD milik Foster Oil menghemat waktu persiapan <strong>3–8 bulan</strong> dibanding memulai perencanaan dari awal.">
+          Modifying Foster Oil's existing POD saves <strong>3–8 months</strong> of preparation time compared to planning from scratch.
+        </p>
       </div>
     </div>
 
     <hr class="divider">
 
     <!-- PROFIT STRUCTURE -->
-    <div class="section-label">Struktur Bagi Hasil</div>
-    <div class="section-title">Alur pendapatan dari produksi ke investor</div>
+    <div class="section-label" data-en="Profit Sharing Structure" data-id="Struktur Bagi Hasil">Profit Sharing Structure</div>
+    <div class="section-title" data-en="Revenue flow from production to investor" data-id="Alur pendapatan dari produksi ke investor">Revenue flow from production to investor</div>
 
     <div class="split-section">
-      <div class="split-labels"><span>Negara (PSC) — 60%</span><span>Pertamina EP — 40%</span></div>
+      <div class="split-labels">
+        <span data-en="State (PSC) — 60%"    data-id="Negara (PSC) — 60%">State (PSC) — 60%</span>
+        <span data-en="Pertamina EP — 40%"   data-id="Pertamina EP — 40%">Pertamina EP — 40%</span>
+      </div>
       <div class="split-bar">
         <div class="split-seg" style="width:60%; background:#D3D1C7;"></div>
         <div class="split-seg" style="width:40%; background:#EF9F27;"></div>
@@ -363,7 +452,10 @@
     </div>
 
     <div class="split-section">
-      <div class="split-labels"><span>Mitra KSO (maks.) — 85%</span><span>Pertamina ditahan — 15%</span></div>
+      <div class="split-labels">
+        <span data-en="KSO Partner (max.) — 85%" data-id="Mitra KSO (maks.) — 85%">KSO Partner (max.) — 85%</span>
+        <span data-en="Pertamina retained — 15%"  data-id="Pertamina ditahan — 15%">Pertamina retained — 15%</span>
+      </div>
       <div class="split-bar">
         <div class="split-seg" style="width:85%; background:#1D9E75;"></div>
         <div class="split-seg" style="width:15%; background:#9FE1CB;"></div>
@@ -371,78 +463,97 @@
     </div>
 
     <div class="formula-box">
-      <span>Bagian bersih investor dari total produksi</span>
+      <span data-en="Investor's net share of total production" data-id="Bagian bersih investor dari total produksi">Investor's net share of total production</span>
       <strong>85% × 40% = 34%</strong>
     </div>
 
     <div class="legend-row">
-      <div class="legend-item"><div class="legend-dot" style="background:#D3D1C7;"></div>Negara (60%)</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#EF9F27;"></div>Pertamina EP (40%)</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Mitra KSO (~34% bersih)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#D3D1C7;"></div><span data-en="State (60%)" data-id="Negara (60%)">State (60%)</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#EF9F27;"></div><span data-en="Pertamina EP (40%)" data-id="Pertamina EP (40%)">Pertamina EP (40%)</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div><span data-en="KSO Partner (~34% net)" data-id="Mitra KSO (~34% bersih)">KSO Partner (~34% net)</span></div>
     </div>
 
     <hr class="divider">
 
     <!-- CALCULATOR -->
-    <div class="section-label">Estimasi Pendapatan (Kalkulator Investasi)</div>
-    <div class="section-title">Sesuaikan parameter untuk melihat proyeksi : "Harga Gas"-"Volume Harian" geser kekanan atau kekiri</div>
+    <div class="section-label" data-en="Revenue Estimate (Investment Calculator)" data-id="Estimasi Pendapatan (Kalkulator Investasi)">Revenue Estimate (Investment Calculator)</div>
+    <div class="section-title" data-en='Adjust parameters to view projections — slide "Gas Price" and "Daily Volume" left or right'
+                               data-id='Sesuaikan parameter untuk melihat proyeksi : "Harga Gas"-"Volume Harian" geser kekanan atau kekiri'>
+      Adjust parameters to view projections — slide "Gas Price" and "Daily Volume" left or right
+    </div>
     <div class="calc-card">
       <div class="calc-row">
-        <div class="calc-label">Harga gas ($/MMBTU)</div>
+        <div class="calc-label" data-en="Gas price ($/MMBTU)" data-id="Harga gas ($/MMBTU)">Gas price ($/MMBTU)</div>
         <input type="range" id="gasPrice" min="6" max="13" value="9" step="1">
         <div class="calc-val" id="gasPriceOut">$9</div>
       </div>
       <div class="calc-row">
-        <div class="calc-label">Volume harian (MMBTU/hari)</div>
+        <div class="calc-label" data-en="Daily volume (MMBTU/day)" data-id="Volume harian (MMBTU/hari)">Daily volume (MMBTU/day)</div>
         <input type="range" id="mmbtud" min="500" max="5000" value="2000" step="100">
-        <div class="calc-val" id="mmbtudOut">2.000</div>
+        <div class="calc-val" id="mmbtudOut">2,000</div>
       </div>
       <div class="result-grid">
         <div class="result-card">
-          <div class="result-label">Pendapatan kotor harian</div>
-          <div class="result-val" id="grossDaily">$18.000</div>
+          <div class="result-label" data-en="Gross daily revenue"         data-id="Pendapatan kotor harian">Gross daily revenue</div>
+          <div class="result-val" id="grossDaily">$18,000</div>
         </div>
         <div class="result-card">
-          <div class="result-label">Bagian investor harian (34%)</div>
-          <div class="result-val" id="investorDaily">$6.120</div>
+          <div class="result-label" data-en="Investor daily share (34%)"  data-id="Bagian investor harian (34%)">Investor daily share (34%)</div>
+          <div class="result-val" id="investorDaily">$6,120</div>
         </div>
         <div class="result-card">
-          <div class="result-label">Pendapatan kotor tahunan</div>
-          <div class="result-val" id="grossAnnual">$6,57 Jt</div>
+          <div class="result-label" data-en="Gross annual revenue"        data-id="Pendapatan kotor tahunan">Gross annual revenue</div>
+          <div class="result-val" id="grossAnnual">$6.57M</div>
         </div>
         <div class="result-card">
-          <div class="result-label">Bagian investor tahunan (34%)</div>
-          <div class="result-val" id="investorAnnual">$2,23 Jt</div>
+          <div class="result-label" data-en="Investor annual share (34%)" data-id="Bagian investor tahunan (34%)">Investor annual share (34%)</div>
+          <div class="result-val" id="investorAnnual">$2.23M</div>
         </div>
       </div>
-      <div class="calc-note">*Estimasi bersifat ilustratif. Volume aktual bergantung pada performa sumur dan perjanjian penjualan gas.</div>
+      <div class="calc-note"
+           data-en="*Estimates are illustrative. Actual volume depends on well performance and gas sales agreements."
+           data-id="*Estimasi bersifat ilustratif. Volume aktual bergantung pada performa sumur dan perjanjian penjualan gas.">
+        *Estimates are illustrative. Actual volume depends on well performance and gas sales agreements.
+      </div>
     </div>
 
     <hr class="divider">
 
     <!-- ROADMAP -->
-    <div class="section-label">Peta Jalan Akuisisi</div>
-    <div class="section-title">Empat langkah untuk masuk ke KSO ini</div>
+    <div class="section-label" data-en="Acquisition Roadmap" data-id="Peta Jalan Akuisisi">Acquisition Roadmap</div>
+    <div class="section-title" data-en="Four steps to enter this KSO" data-id="Empat langkah untuk masuk ke KSO ini">Four steps to enter this KSO</div>
     <div class="step-grid">
       <div class="step-card">
-        <div class="step-num">Langkah 01</div>
-        <div class="step-title">Pertemuan Awal dengan MIGAS</div>
-        <div class="step-desc">Bertemu pihak MIGAS pemegang aset untuk mendapatkan persetujuan informal sebelum proses formal dimulai.</div>
+        <div class="step-num"   data-en="Step 01"   data-id="Langkah 01">Step 01</div>
+        <div class="step-title" data-en="Initial Meeting with MIGAS"   data-id="Pertemuan Awal dengan MIGAS">Initial Meeting with MIGAS</div>
+        <div class="step-desc"  data-en="Negotiate with MIGAS as asset holder (percentage scheme) before the formal process begins."
+                                data-id="Negoisasi dengan MIGAS sebagai pemegang aset (skema presentase) sebelum proses formal dimulai.">
+          Negotiate with MIGAS as asset holder (percentage scheme) before the formal process begins.
+        </div>
       </div>
       <div class="step-card">
-        <div class="step-num">Langkah 02</div>
-        <div class="step-title">Ajukan Proposal KSO</div>
-        <div class="step-desc">Siapkan dan ajukan proposal KSO resmi ke Pertamina EP beserta komitmen keuangan investor.</div>
+        <div class="step-num"   data-en="Step 02"   data-id="Langkah 02">Step 02</div>
+        <div class="step-title" data-en="Submit KSO Proposal"          data-id="Ajukan Proposal KSO">Submit KSO Proposal</div>
+        <div class="step-desc"  data-en="Prepare and submit an official KSO proposal to Pertamina EP along with investor financial commitments."
+                                data-id="Siapkan dan ajukan proposal KSO resmi ke Pertamina EP beserta komitmen keuangan investor.">
+          Prepare and submit an official KSO proposal to Pertamina EP along with investor financial commitments.
+        </div>
       </div>
       <div class="step-card">
-        <div class="step-num">Langkah 03</div>
-        <div class="step-title">Review POD &amp; Bank Garansi</div>
-        <div class="step-desc">Adopsi/modifikasi POD Foster Oil untuk hemat 3–8 bulan. Setor bank garansi sebesar $1,5 Jt.</div>
+        <div class="step-num"   data-en="Step 03"   data-id="Langkah 03">Step 03</div>
+        <div class="step-title" data-en="POD Review &amp; Bank Guarantee" data-id="Review POD &amp; Bank Garansi">POD Review &amp; Bank Guarantee</div>
+        <div class="step-desc"  data-en="Adopt/modify Foster Oil's POD to save 3–8 months. Deposit bank guarantee of $1.5M."
+                                data-id="Adopsi/modifikasi POD Foster Oil untuk hemat 3–8 bulan. Setor bank garansi sebesar $1,5 Jt.">
+          Adopt/modify Foster Oil's POD to save 3–8 months. Deposit bank guarantee of $1.5M.
+        </div>
       </div>
       <div class="step-card">
-        <div class="step-num">Langkah 04</div>
-        <div class="step-title">Operasional KSO Dimulai</div>
-        <div class="step-desc">Kontrak ditandatangani, operasional diserahkan dari manajemen sementara PEP ke mitra KSO baru.</div>
+        <div class="step-num"   data-en="Step 04"   data-id="Langkah 04">Step 04</div>
+        <div class="step-title" data-en="KSO Operations Begin"         data-id="Operasional KSO Dimulai">KSO Operations Begin</div>
+        <div class="step-desc"  data-en="Contract signed; operations handed over from PEP interim management to the new KSO partner."
+                                data-id="Kontrak ditandatangani, operasional diserahkan dari manajemen sementara PEP ke mitra KSO baru.">
+          Contract signed; operations handed over from PEP interim management to the new KSO partner.
+        </div>
       </div>
     </div>
 
@@ -451,12 +562,21 @@
     <!-- CTA -->
     <div class="cta-grid">
       <div class="cta-left">
-        <strong>Dokumen terbatas internal PT Garuda Nusantara II</strong>
-        <p>Dokumen ini dibuat sesuai dengan hasil pertemuan antara PERTAMINA EP (Dewan Investasi) x Garuda Nusantara Dua </p>
+        <strong data-en="Restricted internal document — PT Garuda Nusantara II"
+                data-id="Dokumen terbatas internal PT Garuda Nusantara II">
+          Restricted internal document — PT Garuda Nusantara II
+        </strong>
+        <p data-en="This document was prepared in accordance with the outcomes of the meeting between PERTAMINA EP (Investment Board) and Garuda Nusantara Dua."
+           data-id="Dokumen ini dibuat sesuai dengan hasil pertemuan antara PERTAMINA EP (Dewan Investasi) x Garuda Nusantara Dua.">
+          This document was prepared in accordance with the outcomes of the meeting between PERTAMINA EP (Investment Board) and Garuda Nusantara Dua.
+        </p>
       </div>
       <div class="cta-right">
-        <strong>Catatan: Cadangan Minyak</strong>
-        <p>Terdapat cadangan minyak tambahan ~200 LPD yang turut mendukung nilai ekonomi keseluruhan proyek ini.</p>
+        <strong data-en="Note: Oil Reserves"        data-id="Catatan: Cadangan Minyak">Note: Oil Reserves</strong>
+        <p data-en="There are additional oil reserves of ~200 LPD that further support the overall economic value of this project."
+           data-id="Terdapat cadangan minyak tambahan ~200 LPD yang turut mendukung nilai ekonomi keseluruhan proyek ini.">
+          There are additional oil reserves of ~200 LPD that further support the overall economic value of this project.
+        </p>
       </div>
     </div>
 
@@ -464,36 +584,54 @@
 
   <!-- FOOTER -->
   <div class="footer">
-    <span>Pertamina EP x GN2</span>
-    <span>Internal Dok by.audi_mentari</span>
+    <span class="footer-brand">Pertamina EP × GN2</span>
+    <span class="footer-meta">Internal Dok — by.audi_mentari</span>
   </div>
 
 </div><!-- /page -->
 
 <script>
-  function fmtIDR(n) {
-    return '$' + Math.round(n).toLocaleString('id-ID');
+  /* ── Calculator ── */
+  function fmtNum(n) {
+    return '$' + Math.round(n).toLocaleString('en-US');
   }
   function fmtM(n) {
-    return '$' + (n / 1e6).toFixed(2) + ' Jt';
+    return '$' + (n / 1e6).toFixed(2) + 'M';
   }
   function calc() {
     const price = parseInt(document.getElementById('gasPrice').value);
     const vol   = parseInt(document.getElementById('mmbtud').value);
     document.getElementById('gasPriceOut').textContent = '$' + price;
-    document.getElementById('mmbtudOut').textContent   = vol.toLocaleString('id-ID');
+    document.getElementById('mmbtudOut').textContent   = vol.toLocaleString('en-US');
     const grossDay = price * vol;
     const invDay   = Math.round(grossDay * 0.34);
     const grossAnn = grossDay * 365;
     const invAnn   = Math.round(grossAnn * 0.34);
-    document.getElementById('grossDaily').textContent    = fmtIDR(grossDay);
-    document.getElementById('investorDaily').textContent = fmtIDR(invDay);
-    document.getElementById('grossAnnual').textContent   = fmtM(grossAnn);
-    document.getElementById('investorAnnual').textContent= fmtM(invAnn);
+    document.getElementById('grossDaily').textContent     = fmtNum(grossDay);
+    document.getElementById('investorDaily').textContent  = fmtNum(invDay);
+    document.getElementById('grossAnnual').textContent    = fmtM(grossAnn);
+    document.getElementById('investorAnnual').textContent = fmtM(invAnn);
   }
   document.getElementById('gasPrice').addEventListener('input', calc);
   document.getElementById('mmbtud').addEventListener('input', calc);
   calc();
+
+  /* ── Language Switch ── */
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+    document.getElementById('btnID').classList.toggle('active', lang === 'id');
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-en][data-id]').forEach(el => {
+      el.innerHTML = el.getAttribute('data-' + lang);
+    });
+  }
+
+  // Init — default is EN (already set in HTML)
+  setLang('en');
 </script>
 
 </body>
