@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KSO Gas Jatinegara — Pitch Investor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --amber: #BA7517;
+    --amber-mid: #EF9F27;
+    --amber-light: #FAEEDA;
+    --teal: #0F6E56;
+    --teal-mid: #1D9E75;
+    --teal-pale: #9FE1CB;
+    --teal-light: #E1F5EE;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --green: #3B6D11;
+    --gray-dark: #2C2C2A;
+    --gray-mid: #5F5E5A;
+    --gray-light: #F1EFE8;
+    --gray-line: #D3D1C7;
+    --white: #ffffff;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #f5f4f0;
+    color: var(--gray-dark);
+    line-height: 1.6;
+  }
+  .page {
+    max-width: 860px;
+    margin: 32px auto;
+    background: var(--white);
+    border: 0.5px solid var(--gray-line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  /* Header */
+  .header-band {
+    background: var(--gray-dark);
+    padding: 28px 36px 20px;
+    position: relative;
+  }
+  .header-band::after {
+    content: '';
+    display: block;
+    height: 4px;
+    background: var(--amber-mid);
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+  }
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 6px;
+  }
+  .header-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+  }
+  .badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-teal  { background: var(--teal-light);  color: var(--teal); }
+  .badge-blue  { background: var(--blue-light);  color: var(--blue); }
+
+  /* Body */
+  .body { padding: 32px 36px; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gray-dark);
+    margin-bottom: 14px;
+  }
+  hr.divider {
+    border: none;
+    border-top: 0.5px solid var(--gray-line);
+    margin: 28px 0;
+  }
+
+  /* Metric cards */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .metric-card {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .metric-label { font-size: 11px; color: var(--gray-mid); margin-bottom: 4px; }
+  .metric-value { font-size: 22px; font-weight: 700; color: var(--gray-dark); }
+  .metric-sub   { font-size: 10px; color: #888; margin-top: 2px; }
+
+  /* Highlight boxes */
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  .highlight-box {
+    background: var(--gray-light);
+    border-left: 3px solid var(--amber-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+  }
+  .highlight-box strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-dark);
+    margin-bottom: 6px;
+  }
+  .highlight-box p {
+    font-size: 12px;
+    color: var(--gray-mid);
+    line-height: 1.55;
+  }
+
+  /* Split bar */
+  .split-section { margin-bottom: 16px; }
+  .split-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--gray-mid);
+    margin-bottom: 5px;
+  }
+  .split-bar {
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    background: var(--gray-light);
+  }
+  .split-seg { height: 100%; }
+  .formula-box {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .formula-box span { font-size: 13px; color: var(--gray-mid); }
+  .formula-box strong { font-size: 20px; font-weight: 700; color: var(--green); }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--gray-mid); }
+  .legend-dot  { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+  /* Calculator */
+  .calc-card {
+    background: var(--gray-light);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .calc-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .calc-label { font-size: 13px; color: var(--gray-mid); min-width: 160px; }
+  input[type=range] {
+    flex: 1;
+    min-width: 80px;
+    accent-color: var(--amber-mid);
+  }
+  .calc-val { font-size: 14px; font-weight: 600; min-width: 64px; color: var(--gray-dark); text-align: right; }
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border-top: 0.5px solid var(--gray-line);
+    padding-top: 14px;
+    margin-top: 4px;
+  }
+  .result-card { background: var(--white); border-radius: 8px; padding: 12px 14px; border: 0.5px solid var(--gray-line); }
+  .result-label { font-size: 11px; color: var(--gray-mid); margin-bottom: 4px; }
+  .result-val   { font-size: 20px; font-weight: 700; color: var(--gray-dark); }
+  .calc-note { font-size: 11px; color: #aaa; margin-top: 10px; font-style: italic; }
+
+  /* Steps */
+  .step-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  .step-card {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 14px 16px;
+    border-top: 3px solid var(--amber-mid);
+  }
+  .step-num   { font-size: 10px; font-weight: 600; color: var(--gray-mid); margin-bottom: 6px; }
+  .step-title { font-size: 13px; font-weight: 600; color: var(--gray-dark); margin-bottom: 6px; line-height: 1.4; }
+  .step-desc  { font-size: 12px; color: var(--gray-mid); line-height: 1.5; }
+
+  /* CTA */
+  .cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .cta-left  { background: var(--amber-light);  padding: 20px 22px; }
+  .cta-right { background: var(--teal-light); padding: 20px 22px; }
+  .cta-left strong, .cta-right strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .cta-left strong { color: var(--amber); }
+  .cta-right strong { color: var(--teal); }
+  .cta-left p, .cta-right p { font-size: 12px; color: var(--gray-mid); line-height: 1.55; }
+
+  /* Footer */
+  .footer {
+    background: var(--gray-dark);
+    padding: 14px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer span { font-size: 11px; color: rgba(255,255,255,0.4); }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; border: none; }
+    input[type=range] { display: none; }
+  }
+  @media (max-width: 600px) {
+    .body { padding: 20px; }
+    .header-band { padding: 20px; }
+    .cta-grid { grid-template-columns: 1fr; }
+    .result-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header-band">
+    <div class="eyebrow">Garuda Nusantara II</div>
+    <div class="header-title">KSO Gas Jatinegara</div>
+    <div class="header-sub">Kerja Sama Operasi dengan Pertamina EP &nbsp;·&nbsp; Jakarta, Indonesia</div>
+    <div class="badges">
+      <span class="badge badge-amber">Komoditas Gas</span>
+      <span class="badge badge-teal">Status Legal Bersih</span>
+      <span class="badge badge-blue">Struktur KSO</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- METRICS -->
+    <div class="section-label">Angka Kunci</div>
+    <div class="section-title">Lima metrik utama</div>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">Investasi Tahun 1</div>
+        <div class="metric-value">$15 Jt</div>
+        <div class="metric-sub">Modal awal operasional</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Total Capex s/d 2035</div>
+        <div class="metric-value">$71–74 Jt</div>
+        <div class="metric-sub">Sesuai POD yang ada</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Bagian Investor Bersih</div>
+        <div class="metric-value">~34%</div>
+        <div class="metric-sub">Dari total produksi gross</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Bank Garansi</div>
+        <div class="metric-value">$1,5 Jt</div>
+        <div class="metric-sub">10% dari nilai POD Th. 1</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Harga Gas /MMBTU</div>
+        <div class="metric-value">$6–13</div>
+        <div class="metric-sub">Kisaran harga pasar</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- WHY THIS ASSET -->
+    <div class="section-label">Mengapa Aset Ini</div>
+    <div class="section-title">Aset strategis dengan status hukum yang bersih</div>
+    <div class="highlight-grid">
+      <div class="highlight-box">
+        <strong>Lokasi Jantung Jakarta</strong>
+        <p>Terletak strategis di pusat kota Jakarta, dekat dengan pasar gas perkotaan berkapasitas tinggi dan infrastruktur distribusi yang sudah ada.</p>
+      </div>
+      <div class="highlight-box">
+        <strong>Status Hukum Bersih</strong>
+        <p>Foster Oil keluar melalui proses WLF KSO yang sah. Aset bebas sengketa dan siap diambil alih oleh mitra KSO baru tanpa risiko hukum.</p>
+      </div>
+      <div class="highlight-box">
+        <strong>Keunggulan POD Lama</strong>
+        <p>Memodifikasi POD milik Foster Oil menghemat waktu persiapan <strong>3–8 bulan</strong> dibanding memulai perencanaan dari awal.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PROFIT STRUCTURE -->
+    <div class="section-label">Struktur Bagi Hasil</div>
+    <div class="section-title">Alur pendapatan dari produksi ke investor</div>
+
+    <div class="split-section">
+      <div class="split-labels"><span>Negara (PSC) — 60%</span><span>Pertamina EP — 40%</span></div>
+      <div class="split-bar">
+        <div class="split-seg" style="width:60%; background:#D3D1C7;"></div>
+        <div class="split-seg" style="width:40%; background:#EF9F27;"></div>
+      </div>
+    </div>
+
+    <div class="split-section">
+      <div class="split-labels"><span>Mitra KSO (maks.) — 85%</span><span>Pertamina ditahan — 15%</span></div>
+      <div class="split-bar">
+        <div class="split-seg" style="width:85%; background:#1D9E75;"></div>
+        <div class="split-seg" style="width:15%; background:#9FE1CB;"></div>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <span>Bagian bersih investor dari total produksi</span>
+      <strong>85% × 40% = 34%</strong>
+    </div>
+
+    <div class="legend-row">
+      <div class="legend-item"><div class="legend-dot" style="background:#D3D1C7;"></div>Negara (60%)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#EF9F27;"></div>Pertamina EP (40%)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Mitra KSO (~34% bersih)</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- CALCULATOR -->
+    <div class="section-label">Estimasi Pendapatan (Kalkulator Investasi)</div>
+    <div class="section-title">Sesuaikan parameter untuk melihat proyeksi : "Harga Gas"-"Volume Harian" geser kekanan atau kekiri</div>
+    <div class="calc-card">
+      <div class="calc-row">
+        <div class="calc-label">Harga gas ($/MMBTU)</div>
+        <input type="range" id="gasPrice" min="6" max="13" value="9" step="1">
+        <div class="calc-val" id="gasPriceOut">$9</div>
+      </div>
+      <div class="calc-row">
+        <div class="calc-label">Volume harian (MMBTU/hari)</div>
+        <input type="range" id="mmbtud" min="500" max="5000" value="2000" step="100">
+        <div class="calc-val" id="mmbtudOut">2.000</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-card">
+          <div class="result-label">Pendapatan kotor harian</div>
+          <div class="result-val" id="grossDaily">$18.000</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Bagian investor harian (34%)</div>
+          <div class="result-val" id="investorDaily">$6.120</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Pendapatan kotor tahunan</div>
+          <div class="result-val" id="grossAnnual">$6,57 Jt</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Bagian investor tahunan (34%)</div>
+          <div class="result-val" id="investorAnnual">$2,23 Jt</div>
+        </div>
+      </div>
+      <div class="calc-note">*Estimasi bersifat ilustratif. Volume aktual bergantung pada performa sumur dan perjanjian penjualan gas.</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ROADMAP -->
+    <div class="section-label">Peta Jalan Akuisisi</div>
+    <div class="section-title">Empat langkah untuk masuk ke KSO ini</div>
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-num">Langkah 01</div>
+        <div class="step-title">Pertemuan Awal dengan MIGAS</div>
+        <div class="step-desc">Bertemu pihak MIGAS pemegang aset untuk mendapatkan persetujuan informal sebelum proses formal dimulai.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Langkah 02</div>
+        <div class="step-title">Ajukan Proposal KSO</div>
+        <div class="step-desc">Siapkan dan ajukan proposal KSO resmi ke Pertamina EP beserta komitmen keuangan investor.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Langkah 03</div>
+        <div class="step-title">Review POD &amp; Bank Garansi</div>
+        <div class="step-desc">Adopsi/modifikasi POD Foster Oil untuk hemat 3–8 bulan. Setor bank garansi sebesar $1,5 Jt.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">Langkah 04</div>
+        <div class="step-title">Operasional KSO Dimulai</div>
+        <div class="step-desc">Kontrak ditandatangani, operasional diserahkan dari manajemen sementara PEP ke mitra KSO baru.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- CTA -->
+    <div class="cta-grid">
+      <div class="cta-left">
+        <strong>Dokumen terbatas internal PT Garuda Nusantara II</strong>
+        <p>Dokumen ini dibuat sesuai dengan hasil pertemuan antara PERTAMINA EP (Dewan Investasi) x Garuda Nusantara Dua </p>
+      </div>
+      <div class="cta-right">
+        <strong>Catatan: Cadangan Minyak</strong>
+        <p>Terdapat cadangan minyak tambahan ~200 LPD yang turut mendukung nilai ekonomi keseluruhan proyek ini.</p>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>KSO Gas Jatinegara</span>
+    <span>Pertamina EP x GN2</span>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+  function fmtIDR(n) {
+    return '$' + Math.round(n).toLocaleString('id-ID');
+  }
+  function fmtM(n) {
+    return '$' + (n / 1e6).toFixed(2) + ' Jt';
+  }
+  function calc() {
+    const price = parseInt(document.getElementById('gasPrice').value);
+    const vol   = parseInt(document.getElementById('mmbtud').value);
+    document.getElementById('gasPriceOut').textContent = '$' + price;
+    document.getElementById('mmbtudOut').textContent   = vol.toLocaleString('id-ID');
+    const grossDay = price * vol;
+    const invDay   = Math.round(grossDay * 0.34);
+    const grossAnn = grossDay * 365;
+    const invAnn   = Math.round(grossAnn * 0.34);
+    document.getElementById('grossDaily').textContent    = fmtIDR(grossDay);
+    document.getElementById('investorDaily').textContent = fmtIDR(invDay);
+    document.getElementById('grossAnnual').textContent   = fmtM(grossAnn);
+    document.getElementById('investorAnnual').textContent= fmtM(invAnn);
+  }
+  document.getElementById('gasPrice').addEventListener('input', calc);
+  document.getElementById('mmbtud').addEventListener('input', calc);
+  calc();
+</script>
+
+</body>
+</html>
